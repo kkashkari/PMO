@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "processDefinitionKey": "KSA_GTPL_PROCUREMENT_LIFECYCLE",
+  "version": "2.1.0",
+  "governingLaw": {
+    "lawName": {
+      "en": "Government Tenders and Procurement Law (Royal Decree M/128)",
+      "ar": "نظام المنافسات والمشتريات الحكومية (مرسوم ملكي م/128)"
+    }
+  },
+  "phases": [
+    {
+      "phaseId": "PHASE_01_PLANNING",
+      "order": 1,
+      "name": {
+        "en": "Advance Planning & Budgeting",
+        "ar": "التخطيط المسبق والميزانية"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_101_ANNUAL_PLAN",
+          "name": {
+            "en": "Publish Annual Procurement Plan on Etimad",
+            "ar": "نشر خطة الأعمال والمشتريات السنوية على منصة اعتماد"
+          },
+          "role": "Procurement_Officer",
+          "timeframe": "Q1 of Fiscal Year"
+        },
+        {
+          "stepId": "STEP_102_EXPRO_REVIEW",
+          "name": {
+            "en": "Government Expenditure & Projects Efficiency Authority (EXPRO) Review",
+            "ar": "مراجعة هيئة كفاءة الإنفاق والمشروعات الحكومية (EXPRO)"
+          },
+          "role": "EXPRO_Authority",
+          "slaWorkingDays": 15,
+          "condition": {
+            "field": "tender.estimatedCost",
+            "operator": ">",
+            "value": 25000000,
+            "currency": "SAR"
+          }
+        }
+      ]
+    },
+    {
+      "phaseId": "PHASE_02_TENDER_LAUNCH",
+      "order": 2,
+      "name": {
+        "en": "Tender Preparation & Launch",
+        "ar": "الإعداد وطرح المنافسة"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_201_METHOD_SELECTION",
+          "name": {
+            "en": "Select Contracting Method",
+            "ar": "تحديد أسلوب التعاقد"
+          }
+        },
+        {
+          "stepId": "STEP_202_PORTAL_PUBLICATION",
+          "name": {
+            "en": "Publish Tender on Etimad Portal",
+            "ar": "نشر المنافسة عبر منصة اعتماد (Etimad)"
+          },
+          "role": "Procurement_Officer"
+        }
+      ]
+    },
+    {
+      "phaseId": "PHASE_03_SUBMISSION_EVALUATION",
+      "order": 3,
+      "name": {
+        "en": "Submission, Opening & Evaluation",
+        "ar": "تقديم العروض، الفتح والتقييم"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_301_BID_SUBMISSION",
+          "name": {
+            "en": "Bid Submission & Initial Guarantee",
+            "ar": "تقديم العروض والضمان الابتدائي"
+          },
+          "notes": "SMEs verified via Monsha'at (منشآت) integration",
+          "role": "Bidder"
+        },
+        {
+          "stepId": "STEP_302_BID_OPENING",
+          "name": {
+            "en": "Open Bids Session",
+            "ar": "جلسة فتح العروض"
+          },
+          "role": "Bid_Opening_Committee"
+        },
+        {
+          "stepId": "STEP_303_BID_EXAMINATION",
+          "name": {
+            "en": "Evaluation, Arithmetic Checks & Low-Price Check",
+            "ar": "فحص العروض والتدقيق الحسابي وتحليل الأسعار"
+          },
+          "role": "Bid_Examination_Committee"
+        }
+      ]
+    },
+    {
+      "phaseId": "PHASE_04_AWARD_STANDSTILL",
+      "order": 4,
+      "name": {
+        "en": "Award & Standstill Period",
+        "ar": "الترسية وفترة التوقف"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_401_AWARD_ANNOUNCEMENT",
+          "name": {
+            "en": "Publish Award Notice on Etimad",
+            "ar": "إعلان قرار الترسية في منصة اعتماد"
+          },
+          "role": "Head_Of_Agency"
+        },
+        {
+          "stepId": "STEP_402_STANDSTILL_PERIOD",
+          "name": {
+            "en": "Standstill & Grievance Period",
+            "ar": "فترة التوقف واستقبال التظلمات"
+          },
+          "role": "Aggrieved_Bidder / Agency_Grievance_Unit",
+          "standstillDurationWorkingDays": { "min": 5, "max": 10 }
+        }
+      ]
+    },
+    {
+      "phaseId": "PHASE_05_CONTRACTING_EXECUTION",
+      "order": 5,
+      "name": {
+        "en": "Contracting & Execution",
+        "ar": "إبرام العقد وتنفيذه"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_501_FINAL_GUARANTEE",
+          "name": {
+            "en": "Submit Final Performance Guarantee (SAMA Regulated)",
+            "ar": "تقديم الضمان النهائي (معتمد من البنك المركزي السعودي SAMA)"
+          },
+          "role": "Winning_Contractor"
+        },
+        {
+          "stepId": "STEP_502_MOF_CONTRACT_REVIEW",
+          "name": {
+            "en": "Ministry of Finance Contract Review",
+            "ar": "مراجعة وزارة المالية للعقد"
+          },
+          "role": "Ministry_Of_Finance",
+          "slaWorkingDays": 15
+        },
+        {
+          "stepId": "STEP_503_SIGN_CONTRACT",
+          "name": {
+            "en": "Sign & Archive Contract",
+            "ar": "توقيع العقد وأرشفته وتزويد الديوان العام للمحاسبة (GCA) بنسخة"
+          },
+          "role": "Head_Of_Agency"
+        },
+        {
+          "stepId": "STEP_504_INVOICING_PIPELINE",
+          "name": {
+            "en": "Progress Payment Certification via Etimad",
+            "ar": "دورة اعتماد المستخلصات المالية عبر منصة اعتماد"
+          },
+          "role": "Multi_Party"
+        }
+      ]
+    },
+    {
+      "phaseId": "PHASE_06_CLOSEOUT_EVALUATION",
+      "order": 6,
+      "name": {
+        "en": "Closeout & Contractor Evaluation",
+        "ar": "الاستلام النهائي والإغلاق وتقييم الأداء"
+      },
+      "steps": [
+        {
+          "stepId": "STEP_601_FINAL_INVOICE_DISBURSEMENT",
+          "name": {
+            "en": "Disburse Final Certificate (ZATCA & GOSI verification)",
+            "ar": "صرف المستخلص الختامي (التحقق من شهادات هيئة الزكاة والضريبة والجمارك ZATCA، والتأمينات الاجتماعية GOSI)"
+          },
+          "role": "Financial_Department"
+        },
+        {
+          "stepId": "STEP_602_WARRANTY_AND_FINAL_ACCEPTANCE",
+          "name": {
+            "en": "Warranty Expiry & Final Handover",
+            "ar": "انتهاء فترة الضمان والاستلام النهائي"
+          },
+          "role": "Inspection_Committee"
+        },
+        {
+          "stepId": "STEP_603_CONTRACTOR_PERFORMANCE_EVAL",
+          "name": {
+            "en": "Contractor Performance Assessment (EXPRO Template)",
+            "ar": "تقييم أداء المتعاقد (نموذج EXPRO)"
+          },
+          "role": "Project_Manager"
+        }
+      ]
+    }
+  ]
+}

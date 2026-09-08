@@ -1,0 +1,56 @@
+flowchart TD
+    subgraph S1["Phase 1: Annual Planning & Budgeting | التخطيط السنوي والميزانية"]
+        A1["Publish Annual Procurement Plan (Q1)<br/>نشر الخطة السنوية (الربع الأول)"] --> A2{"EXPRO Review?<br/>مراجعة هيئة كفاءة الإنفاق؟"}
+        A2 -- "Estimated Cost > SAR 25M" --> A3["Review by EXPRO (15 Days)<br/>مراجعة هيئة كفاءة الإنفاق والمشروعات الحكومية (15 يوم عمل)"]
+        A2 -- "<= SAR 25M" --> A4["Verify Budget Appropriation<br/>التحقق من الاعتماد المالي"]
+        A3 --> A4
+    end
+
+    subgraph S2["Phase 2: Tender Preparation & Tendering | الإعداد والطرح"]
+        A4 --> B1["Draft RFP, Conditions & Specifications<br/>إعداد كراسة الشروط والمواصفات"]
+        B1 --> B2["Prepare Encrypted Confidential Estimated Cost<br/>إعداد التكلفة التقديرية المشفرة"]
+        B2 --> B3{"Pre-Qualification Required?<br/>هل يتطلب تأهيل مسبق؟"}
+        B3 -- "Yes (> SAR 50M or Complex)" --> B4["Conduct Pre-Qualification<br/>إجراء التأهيل المسبق"]
+        B3 -- "No" --> B5["Publish Tender Announcement on Etimad Portal<br/>نشر إعلان المنافسة على منصة اعتماد"]
+        B4 --> B5
+        B5 --> B6["Receive Inquiries & Encrypted Bids<br/>استلام الاستفسارات والعروض المشفرة والضمان الابتدائي"]
+    end
+
+    subgraph S3["Phase 3: Opening & Examination | فتح وفحص العروض"]
+        B6 --> C1["Bid Opening Committee: Open Bids<br/>لجنة فتح العروض: فتح العروض وإحالة المحضر (3 أيام)"]
+        C1 --> C2["Bid Examination Committee: Technical Evaluation<br/>لجنة فحص العروض: التقييم الفني"]
+        C2 --> C3["Open Financial Bids & Decrypt Cost Estimate<br/>فتح العروض المالية وفك تشفير التكلفة التقديرية"]
+        C3 --> C4{"Abnormally Low (>= 25% below)?<br/>سعر منخفض جداً؟"}
+        C4 -- "Yes" --> C5["Clarification & Cost Analysis<br/>التحقق من قدرة المنافس والتحليل المالي"]
+        C4 -- "No" --> C6{"Price within Budget/Market?<br/>السعر ضمن الميزانية وأسعار السوق؟"}
+        C5 --> C6
+        C6 -- "Exceeds" --> C7["Negotiation Protocol (Art. 47)<br/>التفاوض للوصول للسعر العادل/المعتمد"]
+        C6 -- "Compliant" --> C8["Post-Qualification of Winning Bidder<br/>التأهيل اللاحق لصاحب العرض الأفضل"]
+        C7 --> C8
+        C8 --> C9["Award Recommendation & Entity Head Approval<br/>توصية الترسية واعتماد رئيس الجهة"]
+    end
+
+    subgraph S4["Phase 4: Award & Standstill | الترسية وفترة التوقف"]
+        C9 --> D1["Publish Award Notice on Etimad Portal<br/>إعلان الترسية في منصة اعتماد وإشعار المتنافسين"]
+        D1 --> D2["Standstill Period (5-10 Working Days)<br/>فترة التوقف (5 - 10 أيام عمل)"]
+        D2 --> D3{"Grievance Filed?<br/>هل قدم تظلم؟"}
+        D3 -- "Yes" --> D4["Grievance Review (15 Days Agency / Review Committee)<br/>البت في التظلم (15 يوم عمل)"]
+        D3 -- "No / Grievance Resolved" --> E1["Request Final Guarantee (5% within 15 Days)<br/>طلب الضمان النهائي (5% خلال 15 يوم عمل)"]
+        D4 -- "Grievance Accepted" --> D5["Corrective Action / Cancel Tender<br/>تصحيح الإجراء أو إلغاء المنافسة"]
+    end
+
+    subgraph S5["Phase 5: Contracting & Execution | إبرام العقد وتنفيذه"]
+        E1 --> E2{"MoF Review Required?<br/>مراجعة وزارة المالية؟"}
+        E2 -- "Term > 1 Yr OR Val >= SAR 5M" --> E3["MoF Contract Financial Review (15 Days)<br/>مراجعة العقد بوزارة المالية (15 يوم عمل)"]
+        E2 -- "No" --> E4["Sign Contract (6 Official Copies, Arabic)<br/>توقيع العقد (6 نسخ معتمدة)"]
+        E3 --> E4
+        E4 --> E5["Site Handover (within 60 Days)<br/>تسليم الموقع (خلال 60 يوماً)"]
+        E5 --> E6["Execution & Milestone Invoices (SLA: 10d+15d+45d)<br/>التنفيذ ورفع المستخلصات والصرف"]
+    end
+
+    subgraph S6["Phase 6: Completion & Closeout | الاستلام النهائي والإغلاق"]
+        E6 --> F1["Preliminary Handover & Release Retention<br/>الاستلام الابتدائي وصرف المستخلص الختامي"]
+        F1 --> F2["Warranty Period (1 Year Maintenance / 10 Yrs Decennial)<br/>فترة الضمان (سنة صيانة / 10 سنوات إنشائي)"]
+        F2 --> F3["Final Handover & Release Final Guarantee<br/>الاستلام النهائي والإفراج عن الضمان النهائي"]
+        F3 --> F4["Contractor Performance Evaluation via Etimad<br/>تقييم أداء المتعاقد عبر منصة اعتماد"]
+    end
